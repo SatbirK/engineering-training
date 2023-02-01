@@ -9,9 +9,9 @@ modalButton.addEventListener("click", function () {
 });
 
 const closeModalButton = document.getElementsByClassName("close-modal-button");
-closeModalButton[0].addEventListener("click", () => {
-   console.log("closeModalButton : ", closeModalButton);
-   modalContainer.classList.toggle("hidden");
+closeModalButton[0].addEventListener("click", function () {
+  console.log("clicked close modal button!");
+  modalContainer.classList.toggle("hidden");
 });
 
 
