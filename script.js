@@ -4,41 +4,38 @@ console.log("modalButton : ", modalButton);
 const modalContainer = document.getElementById('modalContainer');
 
 
- jiraTitles = [
+const jiraTitles = [
   "Create a public repository under your GitHub account",
   "Create a new script file, and import it into index.html and add a console log",
   "JavaScript: Variables",
   "JavaScript: Event Listeners - Add Toggle Button Inside of Modal",
   "JavaScript: Functions - Write a function to toggle hidden class on modal",
-]; 
+];
 jiraTitles.forEach((title) => console.log(title));
 
-jiraLinks = [
+const jiraLinks = [
   "https://totalwine.atlassian.net/browse/TT-2",
   "https://totalwine.atlassian.net/browse/TT-16",
   "https://totalwine.atlassian.net/browse/TT-17",
   "https://totalwine.atlassian.net/browse/TT-18",
   "https://totalwine.atlassian.net/browse/TT-19",
-]; 
+];
 jiraLinks.forEach(link);
-function link(value)
-{
+function link(value) {
   console.log(value);
 }
 
 
-for (let i=0; i< jiraTitles.length; i++) {
-  const jiraObject = { 
-    title : jiraTitles[i],  
-    link : jiraLinks[i]
+const jiraArrays = [];
+for (let i = 0; i < jiraTitles.length; i++) {
+  jiraObject = {
+    title: jiraTitles[i],
+    link: jiraLinks[i]
   }
-  console.log( "jiraObject : " , jiraObject );
+  console.log("jiraObject : ", jiraObject);
+  jiraArrays.push(jiraObject);
 }
-
-
-
-
-
+console.log("jiraArrays  :", jiraArrays);
 
 modalButton.addEventListener("click", function () {
   console.log("clicked button!");
