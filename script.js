@@ -2,6 +2,7 @@ console.log("Engineering Training");
 const modalButton = document.getElementById("modalButton");
 console.log("modalButton : ", modalButton);
 const modalContainer = document.getElementById('modalContainer');
+let listElement = document.querySelector('.grid-container');
 
 
 const jiraTitles = [
@@ -36,6 +37,13 @@ for (let i = 0; i < jiraTitles.length; i++) {
   jiraArrays.push(jiraObject);
 }
 console.log("jiraArrays  :", jiraArrays);
+
+
+for (let i = 0; i < jiraArrays.length; i++) {
+  let listItem = document.createElement("li");
+  listElement.prepend(listItem)
+ 
+  }
 
 modalButton.addEventListener("click", function () {
   console.log("clicked button!");
