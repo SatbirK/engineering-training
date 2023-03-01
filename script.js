@@ -39,10 +39,11 @@ for (let i = 0; i < jiraTitles.length; i++) {
 console.log("jiraArrays  :", jiraArrays);
 
 
-for (let i = 0; i < jiraArrays.length; i++) {
-  let listItem = document.createElement("li");
-  listElement.prepend(listItem)
- 
+for (let i = 0; i < jiraTitles.length; i++) {
+  console.log(jiraObject.link);
+  var listItem = document.createElement("li");
+  listItem.innerHTML = `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${jiraObject.link}">${jiraObject.title}</a></li>`
+  listElement.append(listItem);
   }
 
 modalButton.addEventListener("click", function () {
