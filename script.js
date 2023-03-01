@@ -35,16 +35,13 @@ for (let i = 0; i < jiraTitles.length; i++) {
   }
   console.log("jiraObject : ", jiraObject);
   jiraArrays.push(jiraObject);
-}
-console.log("jiraArrays  :", jiraArrays);
 
-
-for (let i = 0; i < jiraTitles.length; i++) {
-  console.log(jiraObject.link);
   var listItem = document.createElement("li");
   listItem.innerHTML = `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${jiraObject.link}">${jiraObject.title}</a></li>`
   listElement.append(listItem);
-  }
+}
+console.log("jiraArrays  :", jiraArrays);
+
 
 modalButton.addEventListener("click", function () {
   console.log("clicked button!");
