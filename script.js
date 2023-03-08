@@ -29,7 +29,7 @@ function link(value) {
 
 const jiraArrays = [];
 for (let i = 0; i < jiraTitles.length; i++) {
-    jiraObject = {
+  jiraObject = {
     title: jiraTitles[i],
     link: jiraLinks[i]
   }
@@ -38,19 +38,27 @@ for (let i = 0; i < jiraTitles.length; i++) {
 }
 console.log("jiraArrays  :", jiraArrays);
 
-
-for (let i = 0; i < jiraArrays.length; i++) {
-  var listItem = document.createElement("li");
-  listItem.innerHTML = `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${jiraArrays[i].link}">${jiraArrays[i].title}</a></li>`
-  listElement.append(listItem);
-}
-
 function loadData() {
   setTimeout(() => {
     console.log("data loaded after a sec");
+    modalContainer.classList.toggle("hidden");
+    renderData();
   }
-  , 1000);
+    , 1000);
 }
+
+
+function renderData() {
+  jiraArrays.forEach((element) => {
+    var listItem = document.createElement("li");
+    listItem.innerHTML = `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${element.link}">${element.title}</a></li>`
+    listElement.append(listItem);
+  });
+
+}
+
+
+
 
 
 modalButton.addEventListener("click", function () {
