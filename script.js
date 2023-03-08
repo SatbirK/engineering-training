@@ -45,10 +45,18 @@ for (let i = 0; i < jiraArrays.length; i++) {
   listElement.append(listItem);
 }
 
+function loadData() {
+  setTimeout(() => {
+    console.log("data loaded after a sec");
+  }
+  , 1000);
+}
+
 
 modalButton.addEventListener("click", function () {
   console.log("clicked button!");
   modalContainer.classList.toggle("hidden");
+  loadData();
 });
 
 const closeModalButton = document.getElementsByClassName("close-modal-button");
