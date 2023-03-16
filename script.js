@@ -48,13 +48,22 @@ function loadData() {
 }
 
 
-function renderData() {
+/*function renderData() {
   jiraArrays.forEach((element) => {
     var listItem = document.createElement("li");
     listItem.innerHTML = `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${element.link}">${element.title}</a></li>`
     listElement.append(listItem);
   });
 
+}*/
+
+function renderData() {
+  var response = "";
+  jiraArrays.forEach((element) => {
+    listItems = document.createElement("li");
+    response += `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${element.link}">${element.title}</a></li>`;
+  });
+  listElement.innerHTML = response;
 }
 
 
