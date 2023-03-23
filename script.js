@@ -39,13 +39,21 @@ for (let i = 0; i < jiraTitles.length; i++) {
 console.log("jiraArrays  :", jiraArrays);
 
 function loadData() {
-  setTimeout(() => {
-    console.log("data loaded after a sec");
-    modalContainer.classList.toggle("hidden");
-    renderData();
-  }
-    , 1000);
+  setTimeout(function () {
+      renderData().then((response) => {
+        listElement.innerHTML = response;
+      console.log("data loaded after a sec");
+      modalContainer.classList.toggle("hidden");
+      return response;
+    });
+  }, 1000);
+
 }
+
+
+
+
+
 
 
 /*function renderData() {
@@ -58,28 +66,31 @@ function loadData() {
 }*/
 
 function renderData() {
-  var response = "";
-  jiraArrays.forEach((element) => {
-    listItems = document.createElement("li");
-    response += `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${element.link}">${element.title}</a></li>`;
+  return new Promise((resolve) => {
+    var response = "";
+    jiraArrays.forEach((element) => {
+      listItems = document.createElement("li");
+      response += `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${element.link}">${element.title}</a></li>`;
+    });
+    resolve(response);
   });
-  listElement.innerHTML = response;
 }
 
 
 
 
 
-modalButton.addEventListener("click", function () {
-  console.log("clicked button!");
-  modalContainer.classList.toggle("hidden");
-  loadData();
-});
 
-const closeModalButton = document.getElementsByClassName("close-modal-button");
-closeModalButton[0].addEventListener("click", function () {
-  console.log("clicked close modal button!");
-  modalContainer.classList.toggle("hidden");
-});
+modalButton.addEventListener("click", function () {
+    console.log("clicked button!");
+    modalContainer.classList.toggle("hidden");
+    loadData();
+  });
+
+  const closeModalButton = document.getElementsByClassName("close-modal-button");
+  closeModalButton[0].addEventListener("click", function () {
+    console.log("clicked close modal button!");
+    modalContainer.classList.toggle("hidden");
+  });
 
 
