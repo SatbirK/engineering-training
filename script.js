@@ -38,9 +38,12 @@ for (let i = 0; i < jiraTitles.length; i++) {
 }
 console.log("jiraArrays  :", jiraArrays);
 
+
+let dataLoaded = false;
 function loadData() {
   setTimeout(function () {
       renderData().then((response) => {
+        dataLoaded = true;
         listElement.innerHTML = response;
       console.log("data loaded after a sec");
       modalContainer.classList.toggle("hidden");
@@ -83,6 +86,10 @@ function renderData() {
 
 
 modalButton.addEventListener("click", function () {
+    if (dataLoaded === true )
+    { 
+      return; 
+    }
     console.log("clicked button!");
     modalContainer.classList.toggle("hidden");
     loadData();
