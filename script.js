@@ -29,6 +29,7 @@ function link(value) {
 }
 
 
+
 class JiraHandler {
   constructor(links, titles) {
     this.links = links;
@@ -40,12 +41,13 @@ const jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
 
 
 
-const jiraArrays = [];
+
 /*for (let i = 0; i < jiraTitles.length; i++) {
   jiraObject = {
     title: jiraTitles[i],
     link: jiraLinks[i]
   }*/
+const jiraArrays = [];
 for (let i = 0; i < jiraHandler.titles.length; i++) {
   jiraObject = {
     title: jiraHandler.titles[i],
