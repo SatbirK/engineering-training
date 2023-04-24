@@ -5,6 +5,8 @@ const modalContainer = document.getElementById('modalContainer');
 let listElement = document.querySelector('.grid-container');
 
 
+
+
 const jiraTitles = [
   "Create a public repository under your GitHub account",
   "Create a new script file, and import it into index.html and add a console log",
@@ -27,16 +29,33 @@ function link(value) {
 }
 
 
+class JiraHandler {
+  constructor(links, titles) {
+    this.links = links;
+    this.titles = titles;
+  }
+
+}
+const jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
+
+
+
 const jiraArrays = [];
-for (let i = 0; i < jiraTitles.length; i++) {
+/*for (let i = 0; i < jiraTitles.length; i++) {
   jiraObject = {
     title: jiraTitles[i],
     link: jiraLinks[i]
+  }*/
+for (let i = 0; i < jiraHandler.titles.length; i++) {
+  jiraObject = {
+    title: jiraHandler.titles[i],
+    link: jiraHandler.links[i]
   }
   console.log("jiraObject : ", jiraObject);
   jiraArrays.push(jiraObject);
 }
 console.log("jiraArrays  :", jiraArrays);
+
 
 let dataLoaded = false;
 const utils = {
