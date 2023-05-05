@@ -1,11 +1,8 @@
 console.log("Engineering Training");
 const modalButton = document.getElementById("modalButton");
 console.log("modalButton : ", modalButton);
-const modalContainer = document.getElementById('modalContainer');
-let listElement = document.querySelector('.grid-container');
-
-
-
+const modalContainer = document.getElementById("modalContainer");
+let listElement = document.querySelector(".grid-container");
 
 const jiraTitles = [
   "Create a public repository under your GitHub account",
@@ -28,18 +25,42 @@ function link(value) {
   console.log(value);
 }
 
-
-
 class JiraHandler {
   constructor(links, titles) {
     this.links = links;
     this.titles = titles;
+    this.jirasObject = this.createJiraObject();
   }
-
+  createJiraObject() {
+    const jiraArrays = [];
+    for (let i = 0; i < this.titles.length; i++) {
+      const jiraCObj = {
+        title: this.titles[i],
+        link: this.links[i],
+      };
+      console.log("jiraObject : ", jiraCObj);
+      jiraArrays.push(jiraCObj);
+    }
+    return jiraArrays;
+  }
 }
 const jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
+console.log(" stirng form of object " + JSON.stringify(jiraHandler.jirasObject));
 
 
+/*console.log (" Begining of jira title + link using class" );
+this.links.forEach((link) => console.log(link));
+ 
+this.titles.forEach(titles)
+function titles(value) 
+{
+  console.log(value);
+}
+console.log (" Ending with  jira title + link using class" );
+}
+ 
+}*/
+//console.log("jira object value " , jiraHandler.jirasObject);
 
 
 /*for (let i = 0; i < jiraTitles.length; i++) {
@@ -51,13 +72,13 @@ const jiraArrays = [];
 for (let i = 0; i < jiraHandler.titles.length; i++) {
   jiraObject = {
     title: jiraHandler.titles[i],
-    link: jiraHandler.links[i]
-  }
+    link: jiraHandler.links[i],
+  };
   console.log("jiraObject : ", jiraObject);
   jiraArrays.push(jiraObject);
 }
-console.log("jiraArrays  :", jiraArrays);
 
+console.log("jiraArrays  :", jiraArrays);
 
 let dataLoaded = false;
 const utils = {
@@ -83,18 +104,8 @@ const utils = {
         return response;
       });
     }, 1000);
-
-  }
-
+  },
 };
-
-
-
-
-
-
-
-
 
 /*function renderData() {
   jiraArrays.forEach((element) => {
@@ -104,13 +115,6 @@ const utils = {
   });
 
 }*/
-
-
-
-
-
-
-
 
 modalButton.addEventListener("click", function () {
   if (dataLoaded === true) {
@@ -126,5 +130,3 @@ closeModalButton[0].addEventListener("click", function () {
   console.log("clicked close modal button!");
   modalContainer.classList.toggle("hidden");
 });
-
-
