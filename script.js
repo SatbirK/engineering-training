@@ -25,6 +25,8 @@ function link(value) {
   console.log(value);
 }
 
+
+const jiraTemplate = { icon:"bi bi-check-circle-fill"};
 class JiraHandler {
   constructor(links, titles) {
     this.links = links;
@@ -37,9 +39,10 @@ class JiraHandler {
       const jiraCObj = {
         title: this.titles[i],
         link: this.links[i],
+        ...jiraTemplate,
       };
       console.log("jiraObject : ", jiraCObj);
-      jiraArrays.push(jiraCObj);
+      jiraArrays.push(jiraCObj );
     }
     return jiraArrays;
   }
@@ -73,9 +76,10 @@ for (let i = 0; i < jiraHandler.titles.length; i++) {
   jiraObject = {
     title: jiraHandler.titles[i],
     link: jiraHandler.links[i],
+    ...jiraTemplate,
   };
   console.log("jiraObject : ", jiraObject);
-  jiraArrays.push(jiraObject);
+  jiraArrays.push(jiraObject );
 }
 
 console.log("jiraArrays  :", jiraArrays);
@@ -86,9 +90,12 @@ const utils = {
     return new Promise((resolve) => {
       var response = "";
       jiraArrays.forEach((element) => {
-        const { link, title } = element;
+        const { link, title, icon } = element;
         listItems = document.createElement("li");
-        response += `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${link}">${title}</a></li>`;
+        //response += `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${link}">${title}</a></li>`;
+          response += `<li class="grid-container"><i class="${icon}"></i><a href="${link}">${title}</a></li>`;
+
+      
       });
       resolve(response);
     });
