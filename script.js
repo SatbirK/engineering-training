@@ -25,8 +25,15 @@ function link(value) {
   console.log(value);
 }
 
+const jiraArrays = [];
+const jiraTemplate = { icon: "bi bi-check-circle-fill" };
+const errorJiraTemplate = { icon: "bi bi-x-circle" };
 
-const jiraTemplate = { icon:"bi bi-check-circle-fill"};
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+console.log("Random num between 0-3 is " + getRandomInt(3));
 class JiraHandler {
   constructor(links, titles) {
     this.links = links;
@@ -36,17 +43,23 @@ class JiraHandler {
   createJiraObject() {
     const jiraArrays = [];
     for (let i = 0; i < this.titles.length; i++) {
+      let rInt = getRandomInt(3);
+      console.log("Randon iNtvalue is  " + rInt);
+      const z = (rInt == '1') ? errorJiraTemplate : jiraTemplate;
+
+
       const jiraCObj = {
         title: this.titles[i],
         link: this.links[i],
-        ...jiraTemplate,
+        ...z,
       };
       console.log("jiraObject : ", jiraCObj);
-      jiraArrays.push(jiraCObj );
+      jiraArrays.push(jiraCObj);
     }
     return jiraArrays;
   }
 }
+
 const jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
 console.log(" stirng form of object " + JSON.stringify(jiraHandler.jirasObject));
 
@@ -71,31 +84,31 @@ console.log (" Ending with  jira title + link using class" );
     title: jiraTitles[i],
     link: jiraLinks[i]
   }*/
-const jiraArrays = [];
-for (let i = 0; i < jiraHandler.titles.length; i++) {
+
+/*for (let i = 0; i < jiraHandler.titles.length; i++) {
   jiraObject = {
     title: jiraHandler.titles[i],
     link: jiraHandler.links[i],
-    ...jiraTemplate,
+    ...,
   };
   console.log("jiraObject : ", jiraObject);
-  jiraArrays.push(jiraObject );
+  jiraArrays.push(jiraObject);
 }
 
-console.log("jiraArrays  :", jiraArrays);
+console.log("jiraArrays  :", jiraArrays);*/
 
 let dataLoaded = false;
 const utils = {
   renderData: function () {
     return new Promise((resolve) => {
       var response = "";
-      jiraArrays.forEach((element) => {
+      jiraHandler.jirasObject.forEach((element) => {
         const { link, title, icon } = element;
         listItems = document.createElement("li");
         //response += `<li class="grid-container"><i class="bi bi-check-circle-fill"></i><a href="${link}">${title}</a></li>`;
-          response += `<li class="grid-container"><i class="${icon}"></i><a href="${link}">${title}</a></li>`;
+        response += `<li class="grid-container"><i class="${icon}"></i><a href="${link}">${title}</a></li>`;
 
-      
+
       });
       resolve(response);
     });
