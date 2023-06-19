@@ -1,3 +1,5 @@
+(async function() {
+
 console.log("Engineering Training");
 const modalButton = document.getElementById("modalButton");
 console.log("modalButton : ", modalButton);
@@ -114,6 +116,8 @@ const utils = {
     });
   },
 
+  
+
   loadData: function (callback) {
     callback();
     setTimeout(function () {
@@ -138,7 +142,10 @@ const utils = {
 }*/
 
 
+
+
 function initModalButton() {
+  return new Promise((resolve) => {
   var dataLoaded = false
   modalButton.addEventListener("click", function () {
     if (dataLoaded === true) {
@@ -147,14 +154,20 @@ function initModalButton() {
     console.log("clicked button!");
     modalContainer.classList.toggle("hidden");
     utils.loadData(() => {
+      resolve();
       dataLoaded = true;
     });
 
 });
+  });
 
 }
 
-initModalButton();
+console.log("BEFORE initModalButton is called");
+await initModalButton();
+console.log("AFTER initModalButton is called");
+
+
 
 const closeModalButton = document.getElementsByClassName("close-modal-button");
 closeModalButton[0].addEventListener("click", function () {
@@ -163,3 +176,6 @@ closeModalButton[0].addEventListener("click", function () {
 });
 
 //console.log("dataLoaded", dataLoaded);
+
+
+})();
