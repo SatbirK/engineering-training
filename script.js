@@ -44,7 +44,7 @@ class JiraHandler {
     const jiraArrays = [];
     for (let i = 0; i < this.titles.length; i++) {
       let rInt = getRandomInt(3);
-      console.log("Randon iNtvalue is  " + rInt);
+      console.log("Randon Int value is  " + rInt);
       const z = (rInt == '1') ? errorJiraTemplate : jiraTemplate;
 
 
@@ -97,7 +97,7 @@ console.log (" Ending with  jira title + link using class" );
 
 console.log("jiraArrays  :", jiraArrays);*/
 
-let dataLoaded = false;
+//let dataLoaded = false;
 const utils = {
   renderData: function () {
     return new Promise((resolve) => {
@@ -114,7 +114,8 @@ const utils = {
     });
   },
 
-  loadData: function () {
+  loadData: function (callback) {
+    callback();
     setTimeout(function () {
       utils.renderData().then((response) => {
         dataLoaded = true;
@@ -136,17 +137,29 @@ const utils = {
 
 }*/
 
-modalButton.addEventListener("click", function () {
-  if (dataLoaded === true) {
-    return;
-  }
-  console.log("clicked button!");
-  modalContainer.classList.toggle("hidden");
-  utils.loadData();
+
+function initModalButton() {
+  var dataLoaded = false
+  modalButton.addEventListener("click", function () {
+    if (dataLoaded === true) {
+      return;
+    }
+    console.log("clicked button!");
+    modalContainer.classList.toggle("hidden");
+    utils.loadData(() => {
+      dataLoaded = true;
+    });
+
 });
+
+}
+
+initModalButton();
 
 const closeModalButton = document.getElementsByClassName("close-modal-button");
 closeModalButton[0].addEventListener("click", function () {
   console.log("clicked close modal button!");
   modalContainer.classList.toggle("hidden");
 });
+
+//console.log("dataLoaded", dataLoaded);
